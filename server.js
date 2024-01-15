@@ -3,7 +3,7 @@ import { connectToMongoDB } from "./db/mongoDB.js";
 
 export const startServer = async () => {
   const PORT = process.env.PORT || 3000;
-  await connectToMongoDB;
+  await connectToMongoDB();
 
   app.listen(PORT, () => {
     console.log(`Server is running. Use our API on port: ${PORT}`);
