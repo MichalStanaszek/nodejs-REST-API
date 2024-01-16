@@ -15,7 +15,7 @@ router.get("/", getContacts);
 
 router.get("/:contactId", showContact);
 
-router.post("/", validation, createContact);
+router.post("/", createContact);
 
 router.delete("/:contactId", deleteContact);
 
