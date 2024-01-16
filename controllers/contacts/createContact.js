@@ -1,5 +1,4 @@
-import { addContact } from "../../models/contacts.js";
-
+import Contact from "../../models/contactSchema.js";
 export const createContact = async (req, res, next) => {
   const body = req.body;
 
@@ -9,7 +8,7 @@ export const createContact = async (req, res, next) => {
   }
 
   try {
-    const contact = await addContact(body);
+    const contact = await Contact.create(body);
     return res.status(201).json(contact);
   } catch (error) {
     res.status(500).json({ message: error.message });
