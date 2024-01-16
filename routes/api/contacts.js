@@ -19,6 +19,6 @@ router.post("/", createContact);
 
 router.delete("/:contactId", deleteContact);
 
-router.put("/:contactId", validation, putContact);
+router.put("/:contactId", putContact);
 
 export { router as contactsRouter };
