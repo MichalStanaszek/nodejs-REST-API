@@ -9,7 +9,6 @@ import {
   putContact,
 } from "../../controllers/contacts/index.js";
 
-import { validation } from "../../validation/validation.js";
 
 router.get("/", getContacts);
 
