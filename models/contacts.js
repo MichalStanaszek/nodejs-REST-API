@@ -1,3 +1,5 @@
+// FILE TO BE DELETED AT THE END OF REFACTORING!!!
+
 import { promises as fs } from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid"; //ID generator (instead of nanoid)
