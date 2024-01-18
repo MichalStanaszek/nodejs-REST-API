@@ -1,5 +1,5 @@
 import Contact from "../../models/contactSchema.js";
-export const createContact = async (req, res, next) => {
+export const postContact = async (req, res, next) => {
   const { name, email, phone } = req.body;
 
   if (Object.keys(req.body).length === 0) {

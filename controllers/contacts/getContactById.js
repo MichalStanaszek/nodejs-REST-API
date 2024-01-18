@@ -1,5 +1,5 @@
 import Contact from "../../models/contactSchema.js";
-export const showContact = async (req, res, next) => {
+export const getContactById = async (req, res, next) => {
   const { contactId } = req.params;
   try {
     const contacts = await Contact.findById(contactId);
