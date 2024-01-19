@@ -1,7 +1,12 @@
 # REST API
-Custom REST API created with Node.js to work with contacts. It uses basic REST methods like: GET, POST, DELETE and PUT.
+Custom REST API created with Node.js to work with contacts. It uses basic REST methods like: GET, POST, DELETE, PUT and PATCH. Contact data is stored in the MongoDB database.
 
 >This REST API is a basis for bigger project. The repository will be developed in the future.
+
+## TECH
+- Node.js
+- Express.js
+- MongoDB
 
 ## Scripts
 
@@ -61,7 +66,7 @@ Get details of a specific contact based on its ID.
 ```
 
 ### 3. Add New Contact
-Add a new contact to the list.
+Add a new contact to the list. "name", "email", and "phone" must be unique.
 
 - **Endpoint:** `/api/contacts/`
 - **Method:** POST
@@ -87,12 +92,12 @@ Delete a specific contact based on its ID.
 message: `contact deleted`
 
 ### 5. Update Contact
-It gives us 2 options: update existing contact based on ID or create a new one.
+Update existing contact based on its ID.
 
-1. `create new contact` - if ID won't be provided in endpoint, it will create new contact
-- **Endpoint:** `/api/contacts/`
+- **Endpoint:** `/api/contacts/:contactId`
 - **Method:** PUT
 
+**Example response:**
 ```json
 {
   "id": "fFas123jvh141G2CG9HVj",
@@ -101,19 +106,15 @@ It gives us 2 options: update existing contact based on ID or create a new one.
   "phone": "123456789"
 }
 ```
+### 6. Update Contact Status
+It changes contact status `favorite`. Possible valuse: true or false.
 
-2. `update contact` - first, please provide ID. Then provide updated contact name, email or phone number. It will change contact data without changing ID.
-- **Endpoint:** `/api/contacts/:contactId`
-- **Method:** PUT
+- **Endpoint:** `/api/contacts/:contactId/favorite`
+- **Method:** PATCH
 
+**Example response:**
 ```json
 {
-  "id": "fFas123jvh141G2CG9HVj",
-  "name": "new test1v2",
-  "email": "newtest1v2@example.com",
-  "phone": "123456789"
+    "favorite" : true
 }
 ```
-
-
-
