@@ -1,4 +1,5 @@
-import Contact from "../../models/contactSchema.js";
+import Contact from "#models/contactSchema.js";
+
 export const getContactById = async (req, res, next) => {
   const { contactId } = req.params;
   try {

@@ -1,4 +1,5 @@
-import Contact from "../../models/contactSchema.js";
+import Contact from "#models/contactSchema.js";
+
 export const postContact = async (req, res, next) => {
   const { name, email, phone } = req.body;
 

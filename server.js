@@ -1,5 +1,5 @@
 import { app } from "./app.js";
-import { connectToMongoDB } from "./db/mongoDB.js";
+import { connectToMongoDB } from "#db/mongoDB.js";
 
 export const startServer = async () => {
   const PORT = process.env.PORT || 3000;

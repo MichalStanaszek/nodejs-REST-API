@@ -8,7 +8,7 @@ import {
   deleteContact,
   putContact,
   patchContact,
-} from "../../controllers/contacts/index.js";
+} from "#controllers/contacts/index.js";
 
 router.get("/", getContacts);
 
