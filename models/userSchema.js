@@ -28,5 +28,9 @@ userSchema.methods.setPassword = async function (password) {
   this.password = hashedPassword;
 };
 
+userSchema.methods.validPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
 const User = model("user", userSchema);
 export default User;
