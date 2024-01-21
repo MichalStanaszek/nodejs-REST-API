@@ -1,10 +1,11 @@
-import { listContacts } from "../../models/contacts.js";
+import Contact from "#models/contactSchema.js";
 
 export const getContacts = async (req, res, next) => {
   try {
-    const allContacts = await listContacts();
-    return res.status(200).json(allContacts);
+    const allContacts = await Contact.find();
+
+    return res.status(200).json({ data: allContacts });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
 };

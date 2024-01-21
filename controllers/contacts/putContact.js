@@ -1,4 +1,4 @@
-import { updateContact } from "../../models/contacts.js";
+import Contact from "#models/contactSchema.js";
 
 export const putContact = async (req, res, next) => {
   const { contactId } = req.params;
@@ -10,8 +10,10 @@ export const putContact = async (req, res, next) => {
   }
 
   try {
-    const contact = await updateContact(contactId, body);
-    return res.status(200).json(contact);
+    await Contact.findByIdAndUpdate(contactId, body);
+    return res.status(200).json({
+      data: { contactId, ...body },
+    });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

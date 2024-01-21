@@ -3,22 +3,23 @@ const router = express.Router();
 
 import {
   getContacts,
-  showContact,
-  createContact,
+  getContactById,
+  postContact,
   deleteContact,
   putContact,
-} from "../../controllers/contacts/index.js";
-
-import { validation } from "../../validation/validation.js";
+  patchContact,
+} from "#controllers/contacts/index.js";
 
 router.get("/", getContacts);
 
-router.get("/:contactId", showContact);
+router.get("/:contactId", getContactById);
 
-router.post("/", validation, createContact);
+router.post("/", postContact);
 
 router.delete("/:contactId", deleteContact);
 
-router.put("/:contactId", validation, putContact);
+router.put("/:contactId", putContact);
+
+router.patch("/:contactId/favorite", patchContact);
 
 export { router as contactsRouter };
