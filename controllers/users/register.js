@@ -1,25 +1,44 @@
 import User from "#models/userSchema.js";
+import { schema } from "#validation/validation.js";
 
-export const register = async (req, res, next) => {
+export async function register(req, res) {
   const { email, password } = req.body;
 
+  //ENTRY DATA JOI VALIDATION
+  const { error } = schema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(409).json({
+      status: "Conflict",
+      code: 409,
+      message: "Email is already in use",
+    });
+  }
+
   try {
-    const existedEmail = await User.findOne({ email });
-    if (existedEmail) {
+    const user = await User.findOne({ email });
+
+    if (user) {
       return res.status(409).json({
         status: "Conflict",
         code: 409,
-        message: "Email in use",
+        message: "Email is already in use",
       });
     }
 
-    const user = new User({ email });
-    await user.setPassword(password);
-    await user.save();
+    const newUser = new User({ email });
+    const { subscription } = newUser;
+    await newUser.setPassword(password);
+    await newUser.save();
+
     return res.status(201).json({
       status: "Created",
       code: 201,
-      data: { email },
+      data: { email, subscription },
     });
   } catch (error) {
     return res.status(400).json({
@@ -28,4 +47,4 @@ export const register = async (req, res, next) => {
       message: error.message,
     });
   }
-};
+}
