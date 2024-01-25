@@ -6,9 +6,13 @@ export const getContacts = async (req, res, next) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
+    const favorite = req.query.favorite;
 
-    const allContacts = await Contact.find().skip(skip).limit(limit);
-    const total = await Contact.countDocuments();
+    //Filter data by "favorite" param
+    const setFavorite = favorite ? { favorite: true } : {};
+
+    const allContacts = await Contact.find(setFavorite).skip(skip).limit(limit);
+    const total = await Contact.countDocuments(setFavorite);
 
     return res.status(200).json({
       data: allContacts,
