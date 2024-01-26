@@ -1,4 +1,5 @@
 import express from "express";
+import { authMiddleware } from "#middleware/authMiddleware.js";
 const router = express.Router();
 
 import {
@@ -10,16 +11,11 @@ import {
   patchContact,
 } from "#controllers/contacts/index.js";
 
-router.get("/", getContacts);
-
-router.get("/:contactId", getContactById);
-
-router.post("/", postContact);
-
-router.delete("/:contactId", deleteContact);
-
-router.put("/:contactId", putContact);
-
-router.patch("/:contactId/favorite", patchContact);
+router.get("/", authMiddleware, getContacts);
+router.get("/:contactId", authMiddleware, getContactById);
+router.post("/", authMiddleware, postContact);
+router.delete("/:contactId", authMiddleware, deleteContact);
+router.put("/:contactId", authMiddleware, putContact);
+router.patch("/:contactId/favorite", authMiddleware, patchContact);
 
 export { router as contactsRouter };
