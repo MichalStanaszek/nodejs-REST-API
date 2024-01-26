@@ -1,15 +1,15 @@
 import express from "express";
-import logger from "morgan";
+
 import cors from "cors";
 import { contactsRouter } from "#routes/api/contacts.js";
 import { usersRouter } from "#routes/api/users.js";
-import { jwtStrategyMiddleware } from "#middleware/index.js";
+import { jwtStrategyMiddleware, loggerMiddleware } from "#middleware/index.js";
 
 const app = express();
-const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 jwtStrategyMiddleware(app);
-app.use(logger(formatsLogger));
+loggerMiddleware(app);
+
 app.use(cors());
 app.use(express.json());
 app.use("/api/contacts", contactsRouter);
