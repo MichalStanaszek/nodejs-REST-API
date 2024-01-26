@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
-import { contactsRouter } from "#routes/api/contacts.js";
-import { usersRouter } from "#routes/api/users.js";
+import { contactsRouter, usersRouter } from "#routes/api/index.js";
 import { createFolderIfNotExist } from "#helpers/createFolderIfNotExist.js";
 import {
   jwtStrategyMiddleware,
