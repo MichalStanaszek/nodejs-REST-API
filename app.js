@@ -1,6 +1,8 @@
 import express from "express";
+import path from "path";
 import { contactsRouter } from "#routes/api/contacts.js";
 import { usersRouter } from "#routes/api/users.js";
+import { createFolderIfNotExist } from "#helpers/createFolderIfNotExist.js";
 import {
   jwtStrategyMiddleware,
   loggerMiddleware,
@@ -9,7 +11,13 @@ import {
   internalError,
 } from "#middleware/index.js";
 
+const tempDir = path.join(process.cwd(), "temp");
+const storageImage = path.join(process.cwd(), "public/avatars");
+
 const app = express();
+
+createFolderIfNotExist(tempDir);
+createFolderIfNotExist(storageImage);
 
 jwtStrategyMiddleware(app);
 loggerMiddleware(app);

@@ -39,6 +39,7 @@
     "#routes/*": "./routes/*",
     "#validation/*": "./validation/*",
     "#auth/*": "./auth/*",
-    "#middleware/*": "./middleware/*"
+    "#middleware/*": "./middleware/*",
+    "#helpers/*": "./helpers/*"
   }
 }
