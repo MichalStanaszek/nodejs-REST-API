@@ -1,6 +1,6 @@
 import multer from "multer";
 import path from "path";
-import { createFolderIfNotExist } from "#helpers/createFolderIfNotExist.js";
+import { createFolderIfNotExist } from "#helpers/index.js";
 
 const tempDir = path.join(process.cwd(), "temp");
 const storageImage = path.join(process.cwd(), "public/avatars");
