@@ -8,7 +8,7 @@ import {
   logout,
   currentUser,
   updateUserSubscription,
-  uploadAvatar,
+  updateAvatar,
 } from "#controllers/users/index.js";
 
 router.post("/signup", register);
@@ -19,8 +19,8 @@ router.patch("/subscription", authMiddleware, updateUserSubscription);
 router.patch(
   "/avatars",
   authMiddleware,
-  uploadMiddleware.single("picture"),
-  uploadAvatar
+  uploadMiddleware.single("avatar"),
+  updateAvatar
 );
 
 export { router as usersRouter };
