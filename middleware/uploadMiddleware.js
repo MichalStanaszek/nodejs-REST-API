@@ -20,7 +20,7 @@ const mimetypeWhiteList = ["image/jpg", "image/jpeg", "image/png", "image/gif"];
 export const uploadMiddleware = multer({
   storage,
   fileFilter: async (req, file, cb) => {
-    const extension = path.extname(file.originalname).toLocaleLowerCase();
+    const extension = path.extname(file.originalname).toLowerCase();
     const mimetype = file.mimetype;
 
     if (
