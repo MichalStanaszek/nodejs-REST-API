@@ -32,6 +32,8 @@ export async function register(req, res) {
 
     const newUser = new User({ email });
     const { subscription } = newUser;
+
+    newUser.setAvatar(email);
     await newUser.setPassword(password);
     await newUser.save();
 
