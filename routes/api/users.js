@@ -9,12 +9,16 @@ import {
   currentUser,
   updateUserSubscription,
   updateAvatar,
+  verifyUser,
 } from "#controllers/users/index.js";
+
+router.get("/logout", authMiddleware, logout);
+router.get("/current", authMiddleware, currentUser);
+router.get("/verify/:verificationToken", verifyUser);
 
 router.post("/signup", register);
 router.post("/login", login);
-router.get("/logout", authMiddleware, logout);
-router.get("/current", authMiddleware, currentUser);
+
 router.patch("/subscription", authMiddleware, updateUserSubscription);
 router.patch(
   "/avatars",
