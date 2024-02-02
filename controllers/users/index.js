@@ -4,3 +4,4 @@ export * from "./logout.js";
 export * from "./currentUser.js";
 export * from "./updateUserSubscription.js";
 export * from "./updateAvatar.js";
+export * from "./verifyUser.js";
