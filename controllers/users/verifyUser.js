@@ -2,7 +2,7 @@ import User from "#models/userSchema.js";
 
 export const verifyUser = async (req, res, next) => {
   try {
-    const verificationToken = req.param.verificationToken;
+    const verificationToken = req.params.verificationToken;
     const user = await User.findOne({ verificationToken });
 
     if (!user) {
@@ -13,7 +13,7 @@ export const verifyUser = async (req, res, next) => {
       });
     }
 
-    user.verificationToken = null;
+    user.verificationToken = " ";
     user.verify = true;
     await user.save();
 
@@ -23,7 +23,6 @@ export const verifyUser = async (req, res, next) => {
       message: "Verification successful",
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
