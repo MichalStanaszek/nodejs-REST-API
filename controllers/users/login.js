@@ -22,6 +22,14 @@ export const login = async (req, res) => {
       });
     }
 
+    if (!user.verify) {
+      return res.status(401).json({
+        status: "Unauthorized",
+        code: 401,
+        message: "Please check your mailbox and verify your email before login",
+      });
+    }
+
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     return res.status(200).json({
       status: "Success",
