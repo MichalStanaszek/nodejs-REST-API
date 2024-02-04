@@ -1,30 +1,28 @@
 import nodemailer from "nodemailer";
-import { configDotenv } from "dotenv";
-configDotenv();
 
 const config = {
   host: "smtp.mailgun.org",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.NODEMAILER_USER,
-    password: process.env.NODEMAILER_PASSWORD,
+    pass: process.env.NODEMAILER_PASSWORD,
   },
   tls: {
     rejectUnauthorized: false,
   },
 };
 
-export const sendEmail = (verificationToken) => {
+export const sendEmail = (email, verificationToken) => {
   const transporter = nodemailer.createTransport(config);
   const verificationLink = `http://localhost:3000/api/users/verify/${verificationToken}`;
 
   const emailOptions = {
     from: "postmaster@sandboxc60bb50fb705400f8e652c1a9a6a3b3f.mailgun.org",
-    to: "michal.stanaszek@gmail.com", //user.email, żeby wysłać do naszego usera z zadania
+    to: email,
     subject: "Nodemailer test",
     text: "Cześć. Testujemy wysyłanie wiadomości!",
-    html: `<p>Kliknij <a href="${verificationLink}">tutaj</a> aby zweryfikować swój adres e-mail.</p>`,
+    html: `<a href="${verificationLink}">Kliknij link, aby zweryfikować swój adres e-mail: ${verificationLink}</a>`,
   };
 
   transporter
