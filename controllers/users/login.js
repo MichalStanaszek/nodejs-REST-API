@@ -29,6 +29,8 @@ export const login = async (req, res) => {
         message: "Please check your mailbox and verify your email before login",
       });
     }
+    // user.token = token;
+    // user.save(); -> it we want to save token in DB; endpoint logout will clean token value from DB
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     return res.status(200).json({
